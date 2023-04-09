@@ -1,1 +1,1 @@
-return { "andweeb/presence.nvim" }
+return { 'andweeb/presence.nvim' }
