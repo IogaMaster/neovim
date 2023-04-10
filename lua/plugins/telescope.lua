@@ -40,6 +40,12 @@ return {
           borderchars = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
           color_devicons = true,
           set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+          -- Keymaps
+          mappings = {
+            n = {
+              ['d'] = require('telescope.actions').delete_buffer,
+            },
+          },
         },
       }
 
