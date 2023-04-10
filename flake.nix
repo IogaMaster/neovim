@@ -19,11 +19,8 @@
       };
     in
     {
-      overlays = rec {
-        neovim = _: prev: {
-          neovim = nvim;
-        };
-        default = neovim;
+      overlay = final: prev: {
+        final.neovim = nvim;
       };
       packages = rec {
         neovim = nvim;
