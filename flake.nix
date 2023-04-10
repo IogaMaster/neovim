@@ -20,7 +20,7 @@
     in
     {
       overlay = final: prev: {
-        final.neovim = nvim;
+        neovim = nvim;
       };
       packages = rec {
         neovim = nvim;
