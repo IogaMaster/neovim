@@ -41,6 +41,7 @@ return {
       'lua_ls',
       'rnix',
       'rust_analyzer',
+      'zls',
     }
     lsp.on_attach(function(client, _)
       require('lsp-format').on_attach(client)
