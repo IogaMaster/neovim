@@ -18,7 +18,7 @@ return {
         }
         dashboard.section.header.opts = {
             position = "center",
-            hl = "SpecialComment",
+            hl = "Comment",
         }
 
         require('alpha').setup(require('alpha.themes.dashboard').config)
