@@ -1,1 +1,1 @@
-return { 'IogaMaster/presence.nvim' }
+return { 'IogaMaster/presence.nvim', branch = "personal" }
