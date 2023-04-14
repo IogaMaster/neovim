@@ -42,6 +42,7 @@ return {
       'rnix',
       'rust_analyzer',
       'zls',
+      'tsserver',
     }
     lsp.on_attach(function(client, _)
       require('lsp-format').on_attach(client)
