@@ -26,6 +26,12 @@
         neovim = nvim;
         default = neovim;
       };
+
+      devShells.default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          neovim
+        ];
+      };
     }
   );
 }
