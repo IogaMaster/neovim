@@ -1,4 +1,4 @@
 return {
-  'kylechui/nvim-surround',
-  config = true,
+	"kylechui/nvim-surround",
+	config = true,
 }
