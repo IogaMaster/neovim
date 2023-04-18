@@ -29,6 +29,14 @@ vim.keymap.set('x', '<leader>p', [["_dP]]) -- paste WON'T copy
 vim.keymap.set('n', 'Q', '<nop>')
 vim.keymap.set('n', '<leader>w', '<C-w>')
 
+-- Unset arrow keys
+vim.cmd [[
+    noremap <Left> <Nop>
+    noremap <Right> <Nop>
+    noremap <Up> <Nop>
+    noremap <Down> <Nop>
+]]
+
 -- Settings
 vim.opt.nu = true
 vim.opt.tabstop = 4
