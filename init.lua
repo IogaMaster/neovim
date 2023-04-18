@@ -37,6 +37,11 @@ vim.cmd [[
     noremap <Down> <Nop>
 ]]
 
+-- Disable Mouse
+vim.cmd [[
+    set mouse=
+]]
+
 -- Settings
 vim.opt.nu = true
 vim.opt.tabstop = 4
