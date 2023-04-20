@@ -9,14 +9,14 @@ vim.cmd [[
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
+    vim.fn.system {
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    }
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup 'plugins'
@@ -28,6 +28,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('x', '<leader>p', [["_dP]]) -- paste WON'T copy
 vim.keymap.set('n', 'Q', '<nop>')
 vim.keymap.set('n', '<leader>w', '<C-w>')
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
 
 -- Unset arrow keys
 vim.cmd [[
