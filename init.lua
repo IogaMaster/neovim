@@ -28,7 +28,7 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('x', '<leader>p', [["_dP]]) -- paste WON'T copy
 vim.keymap.set('n', 'Q', '<nop>')
 vim.keymap.set('n', '<leader>w', '<C-w>')
-vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<leader><Tab>', '<cmd>bnext<cr>')
 
 -- Unset arrow keys
 vim.cmd [[
