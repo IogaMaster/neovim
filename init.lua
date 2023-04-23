@@ -65,3 +65,10 @@ vim.opt.updatetime = 50
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
+
+-- Neovide
+if vim.g.neovide then
+    vim.o.guifont = "JetBrains Mono Nerd Font:h14"
+    vim.g.neovide_cursor_vfx_mode = "railgun"
+    -- vim.g.neovide_transparency = 0.9
+end
