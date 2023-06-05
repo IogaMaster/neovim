@@ -21,6 +21,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup 'plugins'
 
+vim.cmd [[set undodir=~/.cache/vim/undodir]]
+
 -- Keymaps
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
