@@ -1,4 +1,4 @@
 return {
-    'wakatime/vim-wakatime',
-    enabled = false,
+  'wakatime/vim-wakatime',
+  enabled = false,
 }
