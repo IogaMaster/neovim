@@ -30,10 +30,10 @@ return {
     lsp.nvim_workspace()
     lsp.set_preferences {
       sign_icons = {
-        error = '',
-        warn = '',
-        hint = '',
-        info = '',
+        error = '✘',
+        warn = '▲',
+        hint = '⚑',
+        info = '»',
       },
     }
     -- Configure Servers
@@ -58,6 +58,9 @@ return {
 
     lsp.on_attach(function(client, _)
       require('lsp-format').on_attach(client)
+      vim.keymap.set('n', '<space>ca', function()
+        vim.lsp.buf.code_action { apply = true }
+      end, bufopts)
     end)
     lsp.setup()
 
