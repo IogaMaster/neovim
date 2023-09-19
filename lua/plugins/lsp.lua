@@ -55,7 +55,7 @@ return {
     -- Configure Servers
     lsp.setup_servers {
       'lua_ls',
-      'rnix',
+      'nil_ls',
       'rust_analyzer',
       'zls',
       'tsserver',

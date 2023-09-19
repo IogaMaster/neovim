@@ -23,7 +23,7 @@
             "--prefix"
             "PATH"
             ":"
-            "${lib.makeBinPath [ pkgs.gcc ]}"
+            "${lib.makeBinPath [ pkgs.gcc pkgs.nil ]}"
           ];
         });
     in
