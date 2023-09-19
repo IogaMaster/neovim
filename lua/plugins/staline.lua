@@ -1,0 +1,48 @@
+return {
+  'tamton-aquib/staline.nvim',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
+  lazy = false,
+  config = {
+    defaults = {
+      left_separator = ' ',
+      right_separator = '  ',
+      lsp_client_symbol = '  ',
+      branch_symbol = ' ',
+      mod_symbol = '',
+      line_column = '[%l/%L]',
+    },
+    mode_icons = {
+      ['n'] = 'NORMAL',
+      ['no'] = 'NORMAL',
+      ['nov'] = 'NORMAL',
+      ['noV'] = 'NORMAL',
+      ['niI'] = 'NORMAL',
+      ['niR'] = 'NORMAL',
+      ['niV'] = 'NORMAL',
+      ['i'] = 'INSERT',
+      ['ic'] = 'INSERT',
+      ['ix'] = 'INSERT',
+      ['s'] = 'INSERT',
+      ['S'] = 'INSERT',
+      ['v'] = 'VISUAL',
+      ['V'] = 'VISUAL',
+      [''] = 'VISUAL',
+      ['r'] = 'REPLACE',
+      ['r?'] = 'REPLACE',
+      ['R'] = 'REPLACE',
+      ['c'] = 'COMMAND',
+      ['t'] = 'TERMINAL',
+    },
+    special_table = {
+      lazy = { 'Plugins', ' ' },
+      TelescopePrompt = { 'Telescope', '  ' },
+    },
+    sections = {
+      left = { '-mode', ' ', 'branch' },
+      mid = {},
+      right = { 'file_name', 'line_column' },
+    },
+  },
+}
