@@ -53,15 +53,29 @@ return {
     }
 
     -- Configure Servers
+
     lsp.setup_servers {
       'lua_ls',
-      'nil_ls',
       'rust_analyzer',
       'zls',
       'tsserver',
       'clangd',
       'tailwindcss',
       'dartls',
+    }
+
+    require('lspconfig').nil_ls.setup {
+      settings = {
+        ['nil'] = {
+          nix = {
+            maxMemoryMB = 7680,
+            flake = {
+              autoArchive = true,
+              autoEvalInputs = true,
+            },
+          },
+        },
+      },
     }
 
     lsp.on_attach(function(client, _)
