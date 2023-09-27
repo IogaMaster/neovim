@@ -7,7 +7,9 @@ return {
     { '<leader>fd', '<cmd>Oil<cr> <cmd>lua ', desc = 'File Browser' },
   },
   config = function()
-    require('oil').setup()
+    require('oil').setup {
+      skip_confirm_for_simple_edits = true,
+    }
 
     -- Auto Preview
     vim.api.nvim_create_autocmd('User', {
