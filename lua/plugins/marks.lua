@@ -1,4 +1,4 @@
 return {
-    'chentoast/marks.nvim',
-    config = true,
+  'chentoast/marks.nvim',
+  config = true,
 }
