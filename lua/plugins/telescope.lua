@@ -71,19 +71,6 @@ return {
       end
     end,
   },
-  -- File Browser
-  {
-    'nvim-telescope/telescope-file-browser.nvim',
-    lazy = false,
-    dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-    keys = {
-      { '<leader>fd', '<cmd>Telescope file_browser<cr>', desc = 'File Browser' },
-    },
-    config = function()
-      require('telescope').load_extension 'file_browser'
-    end,
-  },
-
   -- Repo Jumping
   {
     'cljoly/telescope-repo.nvim',
