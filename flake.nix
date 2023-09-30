@@ -42,7 +42,6 @@
 
       devShells.default = pkgs.mkShell {
         nativeBuildInputs = [
-          nvim
           pkgs.stylua
         ];
       };
