@@ -23,7 +23,9 @@ return {
     { 'folke/trouble.nvim' },
 
     -- Misc
-    { 'lukas-reineke/lsp-format.nvim' },
+    {
+      'stevearc/conform.nvim',
+    },
 
     -- Flutter
     {
@@ -119,5 +121,26 @@ return {
     vim.diagnostic.config {
       virtual_text = true,
     }
+
+    require('conform').setup {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        nix = { 'alejandra' },
+        rust = { 'rustfmt' },
+        markdown = { 'mdformat' },
+      },
+      format_on_save = {
+        lsp_fallback = true,
+        async = false,
+        timeout_md = 500,
+      },
+    }
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      pattern = '*',
+      callback = function(args)
+        require('conform').format { bufnr = args.buf }
+      end,
+    })
   end,
 }
