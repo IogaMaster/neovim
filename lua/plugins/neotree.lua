@@ -13,11 +13,9 @@ return {
   },
   config = {
     filesystem = {
-      follow_current_file = true,
+      follow_current_file = { enabled = true },
       hijack_netrw_behavior = 'open_default',
-      filtered_items = {
-        visible = true,
-      },
+      filtered_items = { visible = true },
       use_libuv_file_watcher = true,
     },
     git_status = {

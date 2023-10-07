@@ -8,7 +8,6 @@ return {
     defaults = {
       left_separator = ' ',
       right_separator = '  ',
-      lsp_client_symbol = '  ',
       branch_symbol = ' ',
       mod_symbol = '',
       line_column = '[%l/%L]',
@@ -36,12 +35,12 @@ return {
       ['t'] = 'TERMINAL',
     },
     special_table = {
-      lazy = { 'Plugins', ' ' },
+      lazy = { 'Plugins', '💤 ' },
       TelescopePrompt = { 'Telescope', '  ' },
     },
     sections = {
       left = { '-mode', ' ', 'branch' },
-      mid = {},
+      mid = { 'lsp_name' },
       right = { 'file_name', 'line_column' },
     },
   },
