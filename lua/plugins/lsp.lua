@@ -64,6 +64,7 @@ return {
       'clangd',
       'tailwindcss',
       'dartls',
+      'gopls',
     }
 
     require('lspconfig').nil_ls.setup {
