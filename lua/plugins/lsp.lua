@@ -37,6 +37,17 @@ return {
       },
       config = true,
     },
+
+    -- Rust
+    { 'simrat39/rust-tools.nvim' },
+    {
+      'saecki/crates.nvim',
+      tag = 'v0.4.0',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      config = function()
+        require('crates').setup()
+      end,
+    },
   },
   config = function()
     local lsp = require 'lsp-zero'
@@ -55,7 +66,6 @@ return {
     }
 
     -- Configure Servers
-
     lsp.setup_servers {
       'lua_ls',
       'rust_analyzer',
@@ -91,6 +101,17 @@ return {
 
     local cmp = require 'cmp'
     local cmp_action = require('lsp-zero').cmp_action()
+
+    vim.api.nvim_create_autocmd('BufRead', {
+      group = vim.api.nvim_create_augroup('CmpSourceCargo', { clear = true }),
+      pattern = 'Cargo.toml',
+      callback = function()
+        cmp.setup.buffer { sources = { { name = 'crates' } } }
+      end,
+    })
+
+    local opts = { silent = true }
+    vim.keymap.set('n', '<leader>cp', require('crates').show_popup, opts)
 
     cmp.setup {
       mapping = {
