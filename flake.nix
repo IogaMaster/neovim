@@ -23,7 +23,7 @@
             "--prefix"
             "PATH"
             ":"
-            "${lib.makeBinPath [ pkgs.gcc pkgs.nil pkgs.chafa pkgs.ffmpegthumbnailer ]}"
+            "${lib.makeBinPath [ pkgs.gcc pkgs.nil pkgs.chafa pkgs.ffmpegthumbnailer pkgs.wakatime ]}"
           ];
         });
     in
