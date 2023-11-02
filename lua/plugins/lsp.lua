@@ -15,6 +15,9 @@ return {
     { 'onsails/lspkind.nvim' },
     { 'folke/neodev.nvim' },
 
+    -- Linting
+    { 'mfussenegger/nvim-lint' },
+
     -- Snippets
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },
@@ -162,6 +165,16 @@ return {
       pattern = '*',
       callback = function(args)
         require('conform').format { bufnr = args.buf }
+      end,
+    })
+
+    -- lint
+    require('lint').linters_by_ft = {
+      nix = { 'statix' },
+    }
+    vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+      callback = function()
+        require('lint').try_lint()
       end,
     })
   end,
