@@ -2,16 +2,16 @@
   description = "IogaMaster's Neovim Configuration";
 
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixpkgs-unstable;
-    utils.url = github:numtide/flake-utils;
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    utils.url = "github:numtide/flake-utils";
   };
 
   outputs = { self, nixpkgs, utils, ... }: utils.lib.eachDefaultSystem (system:
     let
-      lib = nixpkgs.lib;
+      inherit (nixpkgs) lib;
       pkgs = nixpkgs.legacyPackages.${system};
 
-      nvim = pkgs.wrapNeovimUnstable (pkgs.neovim-unwrapped)
+      nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
         (pkgs.neovimUtils.makeNeovimConfig
           {
             customRC = ''
@@ -29,7 +29,7 @@
     in
     {
       overlays = {
-        neovim = _: prev: {
+        neovim = _: _prev: {
           neovim = nvim;
         };
         default = self.overlays.neovim;
