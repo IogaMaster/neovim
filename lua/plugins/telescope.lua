@@ -87,4 +87,11 @@ return {
       require('telescope').load_extension 'media_files'
     end,
   },
+  {
+    'mrcjkb/telescope-manix',
+    keys = {
+      { '<leader>fm', '<cmd>Telescope manix<cr>', desc = 'Search Nix Options and Utils' },
+    },
+    -- ...
+  },
 }
