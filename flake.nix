@@ -10,6 +10,23 @@
     let
       inherit (nixpkgs) lib;
       pkgs = nixpkgs.legacyPackages.${system};
+      runtimeDeps = with pkgs; [ 
+        # Tree sitter
+        gcc 
+        
+        # LSP/Linters
+        nil 
+        statix 
+        deadnix 
+        manix
+
+        # Telescope
+        chafa 
+        ffmpegthumbnailer 
+
+        # Misc
+        wakatime 
+      ];
 
       nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
         (pkgs.neovimUtils.makeNeovimConfig
@@ -23,7 +40,7 @@
             "--prefix"
             "PATH"
             ":"
-            "${lib.makeBinPath [ pkgs.gcc pkgs.nil pkgs.chafa pkgs.ffmpegthumbnailer pkgs.wakatime pkgs.statix pkgs.deadnix pkgs.manix]}"
+            "${lib.makeBinPath runtimeDeps}"
           ];
         });
     in
