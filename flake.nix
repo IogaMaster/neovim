@@ -16,6 +16,7 @@
         
         # LSP/Linters
         nil 
+        nixd
         statix 
         deadnix 
         manix

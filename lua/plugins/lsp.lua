@@ -78,6 +78,8 @@ return {
       'tailwindcss',
       'dartls',
       'gopls',
+
+      'nixd',
     }
 
     require('lspconfig').nil_ls.setup {
@@ -93,6 +95,8 @@ return {
         },
       },
     }
+
+    require('lspconfig').nixd.setup {}
 
     lsp.on_attach(function(client, _)
       require('lsp-format').on_attach(client)
