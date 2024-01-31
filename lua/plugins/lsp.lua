@@ -78,6 +78,7 @@ return {
       'tailwindcss',
       'dartls',
       'gopls',
+      'typst-lsp',
 
       'nixd',
     }
