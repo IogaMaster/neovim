@@ -10,23 +10,22 @@
     let
       inherit (nixpkgs) lib;
       pkgs = nixpkgs.legacyPackages.${system};
-      runtimeDeps = with pkgs; [ 
+      runtimeDeps = with pkgs; [
         # Tree sitter
-        gcc 
-        
+        gcc
+
         # LSP/Linters
-        nil 
-        nixd
-        statix 
-        deadnix 
+        nil
+        statix
+        deadnix
         manix
 
         # Telescope
-        chafa 
-        ffmpegthumbnailer 
+        chafa
+        ffmpegthumbnailer
 
         # Misc
-        wakatime 
+        wakatime
       ];
 
       nvim = pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped
