@@ -79,6 +79,7 @@ return {
       'dartls',
       'gopls',
       'typst-lsp',
+      'ols',
     }
 
     require('lspconfig').nil_ls.setup {
