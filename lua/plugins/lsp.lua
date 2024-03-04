@@ -80,6 +80,7 @@ return {
       'gopls',
       'typst-lsp',
       'ols',
+      'julials',
     }
 
     require('lspconfig').nil_ls.setup {
