@@ -81,6 +81,7 @@ return {
       'typst-lsp',
       'ols',
       'julials',
+      'glsl_analyzer',
     }
 
     require('lspconfig').nil_ls.setup {
