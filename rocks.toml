@@ -10,6 +10,7 @@
 tree-sitter-toml = "0.0.2"
 
 "oil.nvim" = "2.11.0"
+"lazygit.nvim" = "scm"
 
 [config]
 plugins_dir = "plugins/"
