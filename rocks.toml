@@ -1,2 +1,7 @@
 [plugins]
 "rocks.nvim" = "2.36.0"
+"rocks-config.nvim" = "2.2.0"
+
+[config]
+plugins_dir = "plugins/"
+auto_setup = false
