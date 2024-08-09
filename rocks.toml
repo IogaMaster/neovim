@@ -3,6 +3,7 @@
 "rocks-config.nvim" = "2.2.0"
 "rocks-git.nvim" = "2.0.1"
 "rocks-treesitter.nvim" = "1.0.3"
+"rocks-dev.nvim" = "1.3.0"
 
 [config]
 plugins_dir = "plugins/"
