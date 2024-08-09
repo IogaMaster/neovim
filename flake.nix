@@ -45,10 +45,9 @@
 
             inherit extraPackages;
             customRC = ''
-              set runtimepath^=$HOME/.nvim
+              set runtimepath^=~/.nvim
               set runtimepath-=~/.config/nvim
-
-              source $HOME/.nvim/init.lua
+              source ~/.nvim/init.lua
             '';
           }
           // {

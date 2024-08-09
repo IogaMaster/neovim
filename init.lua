@@ -3,9 +3,13 @@ do
   -- Specifies where to install/use rocks.nvim
   local install_location = vim.fs.joinpath(vim.fn.stdpath 'data', 'rocks')
 
+  -- Where the neovim config is located
+  local config_dir = vim.split(vim.o.runtimepath, ',')[1]
+
   -- Set up configuration options related to rocks.nvim (recommended to leave as default)
   local rocks_config = {
     rocks_path = vim.fs.normalize(install_location),
+    config_path = vim.fs.joinpath(config_dir, "rocks.toml"),
   }
 
   vim.g.rocks_nvim = rocks_config
