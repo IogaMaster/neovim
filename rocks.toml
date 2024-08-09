@@ -2,7 +2,12 @@
 "rocks.nvim" = "2.36.0"
 "rocks-config.nvim" = "2.2.0"
 "rocks-git.nvim" = "2.0.1"
+"rocks-treesitter.nvim" = "1.0.3"
 
 [config]
 plugins_dir = "plugins/"
 auto_setup = false
+
+[treesitter]
+auto_highlight = "all"
+auto_install = "true"
