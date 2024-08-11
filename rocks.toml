@@ -15,7 +15,7 @@
 "lazygit.nvim" = "scm"
 
 [config]
-plugins_dir = "plugins/"
+plugins_dir = "config/"
 auto_setup = true
 
 [treesitter]
