@@ -21,46 +21,14 @@
     });
 
     packages = forAllSystems (pkgs: rec {
-      neovim = let
-        config = let
-          extraPackages = with pkgs; [
-            # Rocks.nvim deps
-            lua5_1
-            luarocks
-            clang
-            pkg-config
-            cargo
-          ];
-        in
-          pkgs.neovimUtils.makeNeovimConfig
-          {
-            withPython3 = false;
-            withRuby = false;
-            withNodeJs = false;
-
-            extraLuaPackages = p:
-              with p; [
-                magick
-              ];
-
-            inherit extraPackages;
-            customRC = ''
-              set runtimepath^=~/.nvim
-              set runtimepath-=~/.config/nvim
-              source ~/.nvim/init.lua
-            '';
-          }
-          // {
-            wrapperArgs = [
-              "--prefix"
-              "PATH"
-              ":"
-              "${lib.makeBinPath extraPackages}"
-            ];
-          };
-      in
-        pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped config;
-      default = neovim;
+      neovim = pkgs.callPackage ./nix/pkgs/neovim.nix {bundled = false;};
+      neovim-bundled = pkgs.callPackage ./nix/pkgs/neovim.nix {};
+      default = neovim-bundled;
     });
+
+    overlays.default = final: prev: {
+      neovim = final.callPackage ./nix/pkgs/neovim.nix {bundled = false;};
+      neovim-bundled = final.callPackage ./nix/pkgs/neovim.nix {};
+    };
   };
 }
