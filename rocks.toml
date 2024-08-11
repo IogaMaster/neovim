@@ -1,6 +1,6 @@
 [plugins]
 # Rocks.nvim and addons
-"rocks.nvim" = "2.36.0"
+"rocks.nvim" = "2.36.1"
 "rocks-config.nvim" = "2.2.0"
 "rocks-git.nvim" = "2.0.1"
 "rocks-treesitter.nvim" = "1.0.3"
