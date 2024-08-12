@@ -38,6 +38,9 @@ rev = "v0.9.0"
 git = "editorconfig/editorconfig-vim"
 rev = "v1.2.0"
 
+[plugins."neocord"]
+dir = "~/dev/neocord"
+
 
 [bundles.lsp]
 items = [
