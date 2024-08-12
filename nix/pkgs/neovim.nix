@@ -59,7 +59,7 @@
     wrapNeovimUnstable neovim-unwrapped config;
 in
   buildFHSEnv {
-    name = "nvim-fhs";
+    name = "nvim";
     targetPkgs = pkgs: [
       nvim
     ];
