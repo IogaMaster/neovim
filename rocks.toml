@@ -6,13 +6,37 @@
 "rocks-treesitter.nvim" = "1.0.3"
 "rocks-dev.nvim" = "1.3.0"
 
-# Treesitter parsers
-"tree-sitter-toml" = "0.0.2"
-
+# Editor
 "oil.nvim" = "2.11.0"
 "which-key.nvim" = "3.13.2"
 "nvim-web-devicons" = "0.100"
 "lazygit.nvim" = "scm"
+
+# Lsp
+"mason.nvim" = "1.10.0"
+"mason-lspconfig.nvim" = "1.30.0"
+nvim-lspconfig = "0.1.8"
+nvim-cmp = { git = "hrsh7th/nvim-cmp", rev = "main"}
+"conform.nvim" = "7.0.0"
+nvim-lint = "scm"
+cmp-nvim-lsp = "scm"
+
+# Treesitter parsers
+"tree-sitter-toml" = "0.0.2"
+tree-sitter-json = "0.0.2"
+tree-sitter-nix = "0.0.4"
+tree-sitter-rust = "0.0.2"
+
+[bundles.lsp]
+items = [
+    "mason.nvim",
+    "mason-lspconfig.nvim",
+    "nvim-lspconfig",
+    "nvim-cmp",
+    "conform.nvim",
+    "nvim-lint",
+    "cmp-nvim-lsp"
+]
 
 [config]
 plugins_dir = "config/"
