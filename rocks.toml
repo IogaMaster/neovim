@@ -19,6 +19,7 @@ nvim-lint = "scm"
 cmp-nvim-lsp = "scm"
 
 "lazygit.nvim" = "scm"
+"telescope.nvim" = "scm"
 
 # Treesitter parsers
 "tree-sitter-toml" = "0.0.2"
