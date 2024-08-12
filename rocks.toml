@@ -10,7 +10,6 @@
 "oil.nvim" = "2.11.0"
 "which-key.nvim" = "3.13.2"
 "nvim-web-devicons" = "0.100"
-"lazygit.nvim" = "scm"
 
 # Lsp
 "mason.nvim" = "1.10.0"
@@ -26,6 +25,14 @@ cmp-nvim-lsp = "scm"
 tree-sitter-json = "0.0.2"
 tree-sitter-nix = "0.0.4"
 tree-sitter-rust = "0.0.2"
+
+# Git
+"lazygit.nvim" = "scm"
+
+[plugins."gitsigns.nvim"]
+git = "github:lewis6991/gitsigns.nvim"
+rev = "v0.9.0"
+
 
 [bundles.lsp]
 items = [
