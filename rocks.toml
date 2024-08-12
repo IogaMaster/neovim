@@ -20,6 +20,7 @@ cmp-nvim-lsp = "scm"
 
 "lazygit.nvim" = "scm"
 "telescope.nvim" = "scm"
+"barbecue.nvim" = "scm"
 
 # Treesitter parsers
 "tree-sitter-toml" = "0.0.2"
@@ -46,6 +47,11 @@ items = [
     "conform.nvim",
     "nvim-lint",
     "cmp-nvim-lsp"
+]
+
+[bundles.ui]
+items = [
+    "barbecue.nvim",
 ]
 
 [config]
