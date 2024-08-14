@@ -17,6 +17,7 @@ nvim-cmp = { git = "hrsh7th/nvim-cmp", rev = "main"}
 "conform.nvim" = "7.0.0"
 nvim-lint = "scm"
 cmp-nvim-lsp = "scm"
+"shade.nvim" = "scm"
 
 "lazygit.nvim" = "scm"
 "telescope.nvim" = "scm"
@@ -28,6 +29,7 @@ cmp-nvim-lsp = "scm"
 tree-sitter-json = "0.0.2"
 tree-sitter-nix = "0.0.4"
 tree-sitter-rust = "0.0.2"
+tree-sitter-javascript = "0.0.2"
 
 [plugins."gitsigns.nvim"]
 git = "github:lewis6991/gitsigns.nvim"
