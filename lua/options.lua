@@ -1,3 +1,13 @@
+-- Most basic config
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+vim.opt.laststatus = 3
+vim.cmd [[
+    let g:loaded_netrw       = 1
+    let g:loaded_netrwPlugin = 1
+]]
+
 -- Disable Mouse
 vim.cmd [[
     set mouse=
@@ -33,3 +43,4 @@ if vim.g.neovide then
   vim.o.guifont = 'JetBrains Mono Nerd Font:h14'
   vim.g.neovide_cursor_vfx_mode = 'railgun'
 end
+
