@@ -144,5 +144,7 @@ return {
     })
 
     require('lsp_signature').setup()
+
+    require('mini.comment').setup()
   end,
 }
