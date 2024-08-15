@@ -64,7 +64,7 @@ in
       nvim
     ];
 
-    runScript = ''
-      nvim
+    runScript = writeShellScript "nvim-fhs.sh" ''
+      exec ${neovim}/bin/nvim "$@"
     '';
   }
