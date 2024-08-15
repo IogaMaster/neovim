@@ -1,8 +1,10 @@
 return {
     "oil",
-    before = MiniDeps.add({ 
-        source = "stevearc/oil.nvim" 
-    }), -- Install using mini.deps
+    before = function() 
+        deps.add({ 
+            source = "stevearc/oil.nvim" 
+        })
+    end,
     keys = {
         { '<leader>fd', '<cmd>Oil<cr>', desc = 'File Browser' } 
     },

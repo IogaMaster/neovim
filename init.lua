@@ -12,9 +12,10 @@ if not vim.loop.fs_stat(mini_path) then
   vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
 require('mini.deps').setup({ path = { package = path_package } })
+deps = MiniDeps
 
 -- Install lz.n (lazy loading api)
-MiniDeps.add({ source = "nvim-neorocks/lz.n" })
+deps.add({ source = "nvim-neorocks/lz.n" })
 
 -- These must be here for it to package with Nix.
 require 'options'
