@@ -29,6 +29,3 @@ vim.cmd [[
 vim.cmd [[
     set mouse=
 ]]
-
--- Enable autopairs
-require('mini.pairs').setup()

@@ -25,5 +25,12 @@ require 'options'
 require 'keymaps'
 require 'colorscheme'
 
+-- Enable mini plugins
+require('mini.pairs').setup()
+require('mini.align').setup()
+require('mini.basics').setup()
+require('mini.jump').setup()
+require('mini.cursorword').setup()
+
 -- Load all plugins
 require('lz.n').load 'plugins'
