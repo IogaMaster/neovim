@@ -3,6 +3,7 @@
   wrapNeovimUnstable,
   neovim-unwrapped,
   neovimUtils,
+  writeShellScript,
   lua5_1,
   luarocks,
   clang,
@@ -65,6 +66,6 @@ in
     ];
 
     runScript = writeShellScript "nvim-fhs.sh" ''
-      exec ${neovim}/bin/nvim "$@"
+      exec ${nvim}/bin/nvim "$@"
     '';
   }
