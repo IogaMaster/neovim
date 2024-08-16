@@ -1,5 +1,5 @@
 <h1 align="center"><img src="./.github/assets/nixvim-dark.webp" width=255></h1>
-<h2 align="center">My Neovim config built with <a href="https://nvchad.com/">lazy.nvim</a>, packaged as an (optional) Nix Flake.</h2>
+<h2 align="center">My Neovim config, packaged as an (optional) Nix Flake.</h2>
 
 
 <h1 align="center">
@@ -25,16 +25,19 @@
    </h1>
    <br>
 
-![image](https://github.com/IogaMaster/neovim/assets/67164465/c578db4b-6a0a-4aff-b218-c482d8a29363)
-
+![image](https://github.com/user-attachments/assets/89c6d1ac-2592-493b-948f-a33b415cdb58)
 
 <details>
 <summary>🖼️ Gallery</summary>
 
-![image](https://github.com/IogaMaster/neovim/assets/67164465/a5e1ef8c-5caf-4241-996d-88677314ca28)
-![image](https://github.com/IogaMaster/neovim/assets/67164465/f550bc43-0bf7-4921-afa5-746923ac0165)
+![image](https://github.com/user-attachments/assets/104199fd-c63f-4351-9e6c-f81d40278f05)
+![image](https://github.com/user-attachments/assets/50ed3f07-e464-450a-b189-68d60a0b35d2)
+
 </details>
 
+Using [mini.deps](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-deps.md) and [lz.n](https://github.com/nvim-neorocks/lz.n) (for lazy loading)
+
+- 📦 Neovim packaged with fhs
 
 To try it out without installing:
 
