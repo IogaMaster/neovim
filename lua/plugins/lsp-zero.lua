@@ -65,7 +65,8 @@ return {
           vim.snippet.expand(args.body)
         end,
       },
-      mapping = {
+      mapping = cmp.mapping.preset.insert {
+        ['<CR>'] = cmp.mapping.confirm { select = false },
         ['<Tab>'] = cmp_action.luasnip_supertab(),
         ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
       },
