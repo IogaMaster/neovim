@@ -9,18 +9,23 @@
   clang,
   pkg-config,
   cargo,
+  statix,
+  manix,
   buildFHSEnv,
   bundled ? true,
 }: let
   nvim = let
     config = let
       extraPackages = [
-        # Rocks.nvim deps
         lua5_1
         luarocks
         clang
         pkg-config
         cargo
+
+        # LSP
+        statix
+        manix
       ];
     in
       neovimUtils.makeNeovimConfig
