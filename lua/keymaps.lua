@@ -10,6 +10,7 @@ vim.keymap.set('n', '<leader>w', '<C-w>')
 vim.keymap.set('n', '<leader><Tab>', '<cmd>bnext<cr>')
 
 vim.keymap.set('n', '<leader>rp', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>') -- Replace all instance of current word in file
+vim.keymap.set('v', '<leader>rp', ':s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>') -- Replace all instance of current word in file
 
 -- Unset arrow keys
 vim.cmd [[
