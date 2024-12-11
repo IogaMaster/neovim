@@ -21,6 +21,7 @@ return {
     deps.add { source = 'mfussenegger/nvim-lint' }
     deps.add { source = 'ray-x/lsp_signature.nvim' }
     deps.add { source = 'mrcjkb/rustaceanvim' }
+    deps.add { source = 'Goose97/timber.nvim' }
   end,
   after = function()
     local lsp_zero = require 'lsp-zero'
@@ -149,5 +150,7 @@ return {
     require('lsp_signature').setup()
 
     require('mini.comment').setup()
+
+    require('timber').setup()
   end,
 }
