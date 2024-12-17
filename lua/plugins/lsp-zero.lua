@@ -43,9 +43,9 @@ return {
     lsp_zero.extend_lspconfig {
       sign_text = {
         error = '✘',
-        warn = '▲',
-        hint = '⚑',
-        info = '»',
+        warn = '',
+        hint = '',
+        info = '',
       },
       lsp_attach = lsp_attach,
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
