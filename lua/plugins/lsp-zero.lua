@@ -120,7 +120,7 @@ return {
     require('conform').setup {
       formatters_by_ft = {
         lua = { 'stylua' },
-        nix = { 'alejandra' },
+        nix = { 'nixfmt' },
         rust = { 'rustfmt' },
         markdown = { 'mdformat' },
       },
