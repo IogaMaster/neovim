@@ -116,6 +116,7 @@ return {
 
     require('lspconfig').ols.setup {} -- Mason is being a goofy ass, and wont install ols
     require('lspconfig').gleam.setup {}
+    require('lspconfig').nixd.setup {}
 
     require('conform').setup {
       formatters_by_ft = {
