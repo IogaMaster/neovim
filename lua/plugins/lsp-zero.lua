@@ -22,13 +22,6 @@ return {
     deps.add { source = 'ray-x/lsp_signature.nvim' }
     deps.add { source = 'mrcjkb/rustaceanvim' }
     deps.add { source = 'Goose97/timber.nvim' }
-    deps.add {
-      source = 'OXY2DEV/markview.nvim',
-      depends = {
-        'nvim-treesitter/nvim-treesitter',
-        'nvim-tree/nvim-web-devicons',
-      },
-    }
   end,
   after = function()
     local lsp_zero = require 'lsp-zero'
@@ -161,7 +154,5 @@ return {
     require('mini.comment').setup()
 
     require('timber').setup()
-
-    require('markview').setup()
   end,
 }
