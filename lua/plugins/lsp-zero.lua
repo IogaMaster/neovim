@@ -7,6 +7,7 @@ return {
       source = 'hrsh7th/nvim-cmp',
       depends = {
         'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-path',
         'saadparwaiz1/cmp_luasnip',
       },
     }
@@ -57,6 +58,7 @@ return {
 
     cmp.setup {
       sources = {
+        { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'lazydev', group_index = 0 },
       },
