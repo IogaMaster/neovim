@@ -23,6 +23,7 @@ return {
     deps.add { source = 'ray-x/lsp_signature.nvim' }
     deps.add { source = 'mrcjkb/rustaceanvim' }
     deps.add { source = 'Goose97/timber.nvim' }
+    deps.add { source = 'danymat/neogen' }
   end,
   after = function()
     local lsp_zero = require 'lsp-zero'
@@ -121,7 +122,7 @@ return {
     require('lspconfig').nixd.setup {}
     require('lspconfig').clangd.setup {
       cmd = { 'clangd', '--compile-commands-dir=.' },
-      root_dir =  require('lspconfig').util.root_pattern('compile_commands.json', '.git'),
+      root_dir = require('lspconfig').util.root_pattern('compile_commands.json', '.git'),
     }
 
     require('conform').setup {
@@ -160,5 +161,8 @@ return {
     require('mini.comment').setup()
 
     require('timber').setup()
+
+    require('neogen').setup { snippet_engine = 'luasnip' }
+    vim.keymap.set('n', '<leader>cg', '<cmd>Neogen<cr>', opts)
   end,
 }
