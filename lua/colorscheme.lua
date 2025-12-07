@@ -73,6 +73,9 @@ local function apply_colorscheme()
     TelescopePromptTitle = { bg = colors.base08, fg = colors.base00 },
     TelescopeResultsTitle = { fg = colors.base00 },
     TelescopePreviewTitle = { bg = colors.base0B, fg = colors.base00 },
+
+    -- lsp
+    NormalFloat = { bg = colors.base01 },
   }
 
   -- Apply highlights

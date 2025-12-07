@@ -24,6 +24,16 @@ return {
     deps.add { source = 'mrcjkb/rustaceanvim' }
     deps.add { source = 'Goose97/timber.nvim' }
     deps.add { source = 'danymat/neogen' }
+    deps.add {
+      source = 'al1-ce/just.nvim',
+      depends = {
+        'nvim-lua/plenary.nvim', -- async jobs
+        'nvim-telescope/telescope.nvim', -- task picker (optional)
+        'rcarriga/nvim-notify', -- general notifications (optional)
+        'j-hui/fidget.nvim', -- task progress (optional)
+        'al1-ce/jsfunc.nvim', -- extension library
+      },
+    }
   end,
   after = function()
     local lsp_zero = require 'lsp-zero'
@@ -164,5 +174,20 @@ return {
 
     require('neogen').setup { snippet_engine = 'luasnip' }
     vim.keymap.set('n', '<leader>cg', '<cmd>Neogen<cr>', opts)
+
+    require('just').setup {
+      fidget_message_limit = 32, -- limit for length of fidget progress message
+      play_sound = false, -- plays sound when task is finished or failed
+      open_qf_on_error = true, -- opens quickfix when task fails
+      open_qf_on_run = true, -- opens quickfix when running `run` task (`:JustRun`)
+      open_qf_on_any = false, -- opens quickfix when running any task (overrides other open_qf options)
+      telescope_borders = { -- borders for telescope window
+        prompt = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
+        results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
+        preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+      },
+    }
+
+    vim.keymap.set('n', '<F12>', '<cmd>Just<cr>', opts)
   end,
 }
