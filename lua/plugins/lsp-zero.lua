@@ -122,18 +122,18 @@ return {
       ensure_installed = { 'lua_ls', 'nil_ls' },
       handlers = {
         function(server_name)
-          require('lspconfig')[server_name].setup {}
+          vim.lsp.enable(server_name)
         end,
       },
     }
 
-    require('lspconfig').ols.setup {} -- Mason is being a goofy ass, and wont install ols
-    require('lspconfig').gleam.setup {}
-    require('lspconfig').nixd.setup {}
-    require('lspconfig').clangd.setup {
+    vim.lsp.enable 'ols'
+    vim.lsp.enable 'gleam'
+    vim.lsp.enable 'nixd'
+    vim.lsp.config('clangd', {
       cmd = { 'clangd', '--compile-commands-dir=.' },
       root_dir = require('lspconfig').util.root_pattern('compile_commands.json', '.git'),
-    }
+    })
 
     require('conform').setup {
       formatters_by_ft = {
