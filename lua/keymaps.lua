@@ -12,6 +12,22 @@ vim.keymap.set('n', '<leader><Tab>', '<cmd>bnext<cr>')
 vim.keymap.set('n', '<leader>rp', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>') -- Replace all instance of current word in file
 vim.keymap.set('v', '<leader>rp', ':s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>') -- Replace all instance of current word in file
 
+vim.keymap.set('v', '<leader>ss', function()
+  local char = vim.fn.nr2char(vim.fn.getchar())
+  local openers = { ['('] = ')', ['['] = ']', ['{'] = '}', ['<'] = '>' }
+  local left, right = char, openers[char] or char
+
+  vim.cmd 'normal! "sd'
+
+  local content = vim.fn.getreg 's'
+  if content:sub(-1) == '\n' then
+    content = content:sub(1, -2)
+  end
+  local result = left .. content .. right
+  vim.fn.setreg('s', result)
+  vim.cmd 'normal! "sP'
+end, { desc = 'Surround selection without newlines' })
+
 -- Unset arrow keys
 vim.cmd [[
     noremap <Left> <Nop>
