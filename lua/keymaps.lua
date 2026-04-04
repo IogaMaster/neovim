@@ -86,3 +86,16 @@ vim.cmd [[
 vim.cmd [[
     set mouse=
 ]]
+
+-- Fix nvim 0.12 double input
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    io.stdout:write '\027[>1u'
+  end,
+})
+
+vim.api.nvim_create_autocmd('VimLeavePre', {
+  callback = function()
+    io.stdout:write '\027[<1u'
+  end,
+})
