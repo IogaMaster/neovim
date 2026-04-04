@@ -34,6 +34,7 @@ return {
         'al1-ce/jsfunc.nvim', -- extension library
       },
     }
+    deps.add { source = 'ray-x/go.nvim' }
   end,
   after = function()
     local lsp_zero = require 'lsp-zero'
@@ -131,11 +132,17 @@ return {
     vim.lsp.enable 'gleam'
     vim.lsp.enable 'nixd'
     vim.lsp.config('clangd', {
-      cmd = { 'clangd', '--compile-commands-dir=.' },
-      root_dir = require('lspconfig').util.root_pattern('compile_commands.json', '.git'),
+      cmd = {
+        'clangd',
+        '--compile-commands-dir=.',
+        '--background-index',
+        '--query-driver=/nix/store/*/bin/gcc,/nix/store/*/bin/clang', -- Essential for Nix
+      },
+      root_dir = vim.fs.root(0, { 'compile_commands.json', '.git' }),
     })
+    vim.lsp.enable 'clangd'
 
-    vim.api.nvim_create_autocmd("LspAttach", {
+    vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client then
