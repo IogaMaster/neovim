@@ -35,6 +35,7 @@ return {
       },
     }
     deps.add { source = 'ray-x/go.nvim' }
+    deps.add { source = 'Massolari/lsp-auto-setup.nvim' }
   end,
   after = function()
     local lsp_zero = require 'lsp-zero'
@@ -205,5 +206,7 @@ return {
     }
 
     vim.keymap.set('n', '<F12>', '<cmd>Just<cr>', opts)
+
+    require('lsp-auto-setup').setup {}
   end,
 }
