@@ -1,6 +1,6 @@
 { lib, wrapNeovimUnstable, neovim-unwrapped, neovimUtils, writeShellScript
 , lua5_1, luarocks, clang, pkg-config, cargo, statix, manix, buildFHSEnv
-, bundled ? true, }:
+, tree-sitter, bundled ? true, }:
 let
   nvim = let
     config = let
@@ -9,6 +9,7 @@ let
         luarocks
         clang
         pkg-config
+        tree-sitter
 
         # LSP
         statix
