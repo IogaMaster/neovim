@@ -8,6 +8,7 @@ return {
     { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
     { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent Files' },
     { '<leader>ft', '<cmd>Telescope live_grep<cr>', desc = 'Search Text in Files' },
+    { '<leader>fg', '<cmd>Telescope git_status<cr>', desc = 'Search List of changed files' },
     { '<leader>bi', '<cmd>Telescope buffers<cr>', desc = 'List Buffers' },
     { '<M-x>', '<cmd>Telescope commands<cr>', desc = 'Run Command' },
     { '<leader>fm', '<cmd>Telescope manix<cr>', desc = 'Search Nix Options and Utils' },
