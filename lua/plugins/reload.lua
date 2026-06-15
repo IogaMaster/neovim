@@ -6,7 +6,10 @@ return {
     }
   end,
   keys = {
-    { '<leader>rr', '<cmd>reload<cr>', desc = 'Reload neovim' },
+    { '<leader>rr', '<cmd>Reload<cr>', desc = 'Reload neovim' },
   },
-  after = nil,
+  cmd = 'Reload',
+  after = function()
+    require('reload').setup()
+  end,
 }
