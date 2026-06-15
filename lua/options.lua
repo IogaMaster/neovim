@@ -60,3 +60,14 @@ if vim.fn.has 'wsl' == 1 then
     cache_enabled = 0,
   }
 end
+
+-- Make no name uneditable
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    if vim.fn.bufname() == '' and vim.bo.buftype == '' then
+      vim.bo.buftype = 'nofile'
+      vim.bo.bufhidden = 'wipe'
+      vim.bo.modifiable = false
+    end
+  end,
+})

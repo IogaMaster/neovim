@@ -2,10 +2,12 @@ return {
   'telescope.nvim',
   before = function()
     deps.add { source = 'nvim-telescope/telescope.nvim', depends = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' } }
+    deps.add { source = 'nvim-telescope/telescope-file-browser.nvim', depends = { 'stevearc/oil.nvim' } }
     deps.add { source = 'mrcjkb/telescope-manix' }
   end,
   keys = {
     { '<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', desc = 'Find Files' },
+    { '<leader>fd', '<cmd>Telescope file_browser hidden=true<cr>', desc = 'Find Files' },
     { '<leader>fr', '<cmd>Telescope oldfiles hidden=true<cr>', desc = 'Recent Files' },
     { '<leader>ft', '<cmd>Telescope live_grep hidden=true<cr>', desc = 'Search Text in Files' },
     { '<leader>fg', '<cmd>Telescope git_status hidden=true<cr>', desc = 'Search List of changed files' },
@@ -15,6 +17,27 @@ return {
   },
   after = function()
     require('telescope').setup {
+      extensions = {
+        file_browser = {
+          -- theme = 'dropdown',
+          hijack_netrw = true,
+          mappings = {
+            ['n'] = {
+              ['o'] = function(prompt_bufnr)
+                local action_state = require 'telescope.actions.state'
+                local current_picker = action_state.get_current_picker(prompt_bufnr)
+                local entry = action_state.get_selected_entry()
+                require('telescope.actions').close(prompt_bufnr)
+                if entry then
+                  require('oil').open(entry.path)
+                else
+                  require('oil').open(current_picker.cwd)
+                end
+              end,
+            },
+          },
+        },
+      },
       defaults = {
         prompt_prefix = '   ',
         selection_caret = '  ',
