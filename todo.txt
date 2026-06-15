@@ -1,1 +1,2 @@
 2026-06-01 Fix FHS wrapper giving bad permissions to lazygit
+(A) mini.deps -> vim.pack
