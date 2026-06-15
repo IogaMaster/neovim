@@ -3,16 +3,24 @@
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-  outputs = { nixpkgs, ... }:
+  outputs =
+    { nixpkgs, ... }:
     let
       inherit (nixpkgs) lib;
-      forAllSystems = function:
-        nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ]
-        (system: function nixpkgs.legacyPackages.${system});
-    in rec {
+      forAllSystems =
+        function:
+        nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ] (
+          system: function nixpkgs.legacyPackages.${system}
+        );
+    in
+    rec {
       devShells = forAllSystems (pkgs: {
-        default =
-          pkgs.mkShell { nativeBuildInputs = with pkgs; [ alejandra stylua ]; };
+        default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [
+            alejandra
+            stylua
+          ];
+        };
       });
 
       packages = forAllSystems (pkgs: rec {

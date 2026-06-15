@@ -34,7 +34,6 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append '@-@'
 vim.opt.updatetime = 50
-vim.opt.clipboard = 'unnamedplus'
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
@@ -44,3 +43,20 @@ if vim.g.neovide then
   vim.g.neovide_cursor_vfx_mode = 'railgun'
 end
 
+-- Clipboard
+-- Make it work on wsl
+vim.opt.clipboard = 'unnamedplus'
+if vim.fn.has 'wsl' == 1 then
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
+    },
+    paste = {
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
+end

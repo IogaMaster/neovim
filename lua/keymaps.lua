@@ -12,6 +12,9 @@ vim.keymap.set('n', '<leader><Tab>', '<cmd>bnext<cr>')
 vim.keymap.set('n', '<leader>rp', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>') -- Replace all instance of current word in file
 vim.keymap.set('v', '<leader>rp', ':s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>') -- Replace all instance of current word in file
 
+vim.keymap.set('v', '<Tab>', '>gv', { remap = false, desc = 'Indent right' })
+vim.keymap.set('v', '<S-Tab>', '<gv', { remap = false, desc = 'Indent left' })
+
 local function get_closer(chars)
   local openers = { ['('] = ')', ['['] = ']', ['{'] = '}', ['<'] = '>' }
   if #chars == 1 and openers[chars] then
@@ -74,8 +77,6 @@ vim.cmd [[
     noremap <Right> <Nop>
     noremap <Up> <Nop>
     noremap <Down> <Nop>
-
-
     inoremap <Left> <Nop>
     inoremap <Right> <Nop>
     inoremap <Up> <Nop>
@@ -99,3 +100,6 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
     io.stdout:write '\027[<1u'
   end,
 })
+
+-- Close buffers
+vim.keymap.set('n', '<leader>bc', ':bd | bd #<cr>')
