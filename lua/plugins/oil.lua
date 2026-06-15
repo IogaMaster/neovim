@@ -13,4 +13,7 @@ return {
       },
     }
   end,
+  keys = {
+    { '<leader>op', '<cmd>Oil<cr>', desc = 'oil' },
+  },
 }
