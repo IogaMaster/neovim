@@ -1,10 +1,8 @@
 return {
   'reload',
-  before = function()
-    deps.add {
-      source = 'IogaMaster/reload.nvim',
-    }
-  end,
+  pkgs = {
+    'IogaMaster/reload.nvim',
+  },
   keys = {
     { '<leader>rr', '<cmd>Reload<cr>', desc = 'Reload neovim' },
   },

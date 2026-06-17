@@ -1,9 +1,11 @@
 return {
   'bufferline.nvim',
-
-  before = function()
-    deps.add { source = 'akinsho/bufferline.nvim', depends = { 'nvim-tree/nvim-web-devicons' } }
-  end,
+  lazy = false,
+  pkgs = {
+    'akinsho/bufferline.nvim',
+    -- Deps
+    'nvim-tree/nvim-web-devicons',
+  },
   after = function()
     require('bufferline').setup {
       options = {

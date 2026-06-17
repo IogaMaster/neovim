@@ -1,15 +1,12 @@
 return {
   'markview.nvim',
-  lazy = false,
-  before = function()
-    deps.add {
-      source = 'OXY2DEV/markview.nvim',
-      depends = {
-        { source = 'nvim-treesitter/nvim-treesitter', checkout = 'main' },
-        'nvim-tree/nvim-web-devicons',
-      },
-    }
-  end,
+  pkgs = {
+    'OXY2DEV/markview.nvim',
+    -- deps
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+    'nvim-tree/nvim-web-devicons',
+  },
+  ft = "markdown",
   after = function()
     require('nvim-treesitter').setup {
       auto_install = true,

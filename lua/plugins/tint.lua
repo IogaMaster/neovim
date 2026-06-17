@@ -1,8 +1,9 @@
 return {
   'tint.nvim',
-  before = function()
-    deps.add { source = 'levouh/tint.nvim' }
-  end,
+  lazy = false,
+  pkgs = {
+    'levouh/tint.nvim',
+  },
   after = function()
     require('tint').setup()
   end,

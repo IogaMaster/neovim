@@ -1,8 +1,11 @@
 return {
-  'nvim-biscuits',
-  before = function()
-    deps.add { source = 'code-biscuits/nvim-biscuits', depends = { 'nvim-treesitter/nvim-treesitter' } }
-  end,
+  'biscuits',
+  pkgs = {
+    'code-biscuits/nvim-biscuits',
+    -- Deps
+    'nvim-treesitter/nvim-treesitter',
+  },
+  event = 'BufReadPost',
   after = function()
     require('nvim-biscuits').setup {
       cursor_line_only = true,

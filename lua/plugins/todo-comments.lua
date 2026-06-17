@@ -1,8 +1,10 @@
 return {
   'todo-comments.nvim',
-  before = function()
-    deps.add { source = 'folke/todo-comments.nvim', depends = { 'nvim-lua/plenary.nvim' } }
-  end,
+  event = 'BufReadPost',
+  pkgs = {
+    'folke/todo-comments.nvim',
+    'nvim-lua/plenary.nvim',
+  },
   after = function()
     require('todo-comments').setup()
   end,

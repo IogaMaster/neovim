@@ -1,10 +1,9 @@
 return {
   'indent-blankline.nvim',
-  before = function()
-    deps.add {
-      source = 'lukas-reineke/indent-blankline.nvim',
-    }
-  end,
+  event = 'BufReadPost',
+  pkgs = {
+    'lukas-reineke/indent-blankline.nvim',
+  },
   after = function()
     require('ibl').setup()
   end,

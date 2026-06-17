@@ -1,45 +1,33 @@
 return {
   'lsp-zero.nvim',
-  before = function()
-    deps.add { source = 'VonHeikemen/lsp-zero.nvim', checkout = 'v4.x' }
-    deps.add { source = 'neovim/nvim-lspconfig' }
-    deps.add {
-      source = 'hrsh7th/nvim-cmp',
-      depends = {
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-path',
-        'saadparwaiz1/cmp_luasnip',
-      },
-    }
-    deps.add { source = 'L3MON4D3/LuaSnip', depends = { 'rafamadriz/friendly-snippets' } }
-    deps.add { source = 'williamboman/mason.nvim' }
-    deps.add { source = 'williamboman/mason-lspconfig.nvim' }
-    deps.add { source = 'folke/lazydev.nvim' }
-    deps.add { source = 'onsails/lspkind.nvim' }
-    deps.add { source = 'deathbeam/lspecho.nvim' }
-    deps.add { source = 'utilyre/barbecue.nvim', depends = { 'SmiteshP/nvim-navic' } }
-    deps.add { source = 'stevearc/conform.nvim' }
-    deps.add { source = 'mfussenegger/nvim-lint' }
-    deps.add { source = 'ray-x/lsp_signature.nvim' }
-    deps.add { source = 'mrcjkb/rustaceanvim' }
-    deps.add { source = 'Goose97/timber.nvim' }
-    deps.add { source = 'danymat/neogen' }
-    deps.add {
-      source = 'al1-ce/just.nvim',
-      depends = {
-        'nvim-lua/plenary.nvim', -- async jobs
-        'nvim-telescope/telescope.nvim', -- task picker (optional)
-        'rcarriga/nvim-notify', -- general notifications (optional)
-        'j-hui/fidget.nvim', -- task progress (optional)
-        'al1-ce/jsfunc.nvim', -- extension library
-      },
-    }
-    deps.add { source = 'ray-x/go.nvim' }
-    deps.add { source = 'Massolari/lsp-auto-setup.nvim' }
-  end,
+  pkgs = {
+    { src = 'https://github.com/VonHeikemen/lsp-zero.nvim', checkout = 'v4.x' },
+    'neovim/nvim-lspconfig',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
+    'folke/lazydev.nvim',
+    'onsails/lspkind.nvim',
+    'deathbeam/lspecho.nvim',
+    'utilyre/barbecue.nvim',
+    'SmiteshP/nvim-navic',
+    'stevearc/conform.nvim',
+    'mfussenegger/nvim-lint',
+    'ray-x/lsp_signature.nvim',
+    'mrcjkb/rustaceanvim',
+    'Goose97/timber.nvim',
+    'danymat/neogen',
+    'ray-x/go.nvim',
+    'Massolari/lsp-auto-setup.nvim',
+  },
+  event = 'BufReadPost',
   after = function()
     local lsp_zero = require 'lsp-zero'
 
+    -- 1. Global LSP Keybindings
     local lsp_attach = function(client, bufnr)
       local opts = { buffer = bufnr }
       vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
@@ -54,6 +42,7 @@ return {
       vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
     end
 
+    -- 2. Extend Global Configurations
     lsp_zero.extend_lspconfig {
       sign_text = {
         error = '✘',
@@ -65,148 +54,58 @@ return {
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
     }
 
-    local cmp = require 'cmp'
-    local cmp_action = require('lsp-zero').cmp_action()
-    require('lazydev').setup()
+    -- 3. Manual Language Server Configurations (No Mason)
+    local lspconfig = require('lspconfig')
 
-    cmp.setup {
+    -- Fix nil_ls issue by targeting the correct nix binary name: 'nil'
+    if vim.fn.executable('nil') == 1 then
+      lspconfig.nil_ls.setup({})
+    end
+
+    -- Example fallback setups for other common languages
+    -- (Add or remove based on binaries installed via Nix)
+    local local_servers = { 'lua_ls', 'gopls', 'pyright', 'ts_ls' }
+    for _, server in ipairs(local_servers) do
+      if lspconfig[server] then
+        lspconfig[server].setup({})
+      end
+    end
+
+    -- 4. Autocomplete (nvim-cmp) & Snippets Configuration
+    local cmp = require('cmp')
+    local luasnip = require('luasnip')
+
+    -- Load friendly-snippets framework
+    require('luasnip.loaders.from_vscode').lazy_load()
+
+    cmp.setup({
       sources = {
-        { name = 'path' },
         { name = 'nvim_lsp' },
-        { name = 'lazydev', group_index = 0 },
+        { name = 'luasnip' },
+        { name = 'path' },
       },
+      mapping = cmp.mapping.preset.insert({
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { 'i', 's' }),
+      }),
       snippet = {
         expand = function(args)
-          -- You need Neovim v0.10 to use vim.snippet
-          vim.snippet.expand(args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
-      mapping = cmp.mapping.preset.insert {
-        ['<CR>'] = cmp.mapping.confirm { select = false },
-        ['<Tab>'] = cmp_action.luasnip_supertab(),
-        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
-      },
-      window = {
-        completion = {
-          winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
-          col_offset = -3,
-          side_padding = 0,
-        },
-      },
-      formatting = {
-        expandable_indicator = true,
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-          local kind = require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
-          local strings = vim.split(kind.kind, '%s', { trimempty = true })
-          kind.kind = ' ' .. (strings[1] or '') .. ' '
-          kind.menu = '    (' .. (strings[2] or '') .. ')'
-
-          return kind
-        end,
-      },
-    }
-
-    vim.diagnostic.config {
-      virtual_text = true,
-    }
-
-    require('lspecho').setup {
-      echo = true, -- Echo progress messages, if set to false you can use .message() to get the current message
-      decay = 3000, -- Message decay time in milliseconds
-    }
-
-    require('mini.icons').setup()
-    require('barbecue').setup()
-
-    require('mason').setup {}
-    require('mason-lspconfig').setup {
-      ensure_installed = { 'lua_ls', 'nil_ls' },
-      handlers = {
-        function(server_name)
-          vim.lsp.enable(server_name)
-        end,
-      },
-    }
-
-    vim.lsp.enable 'ols'
-    vim.lsp.enable 'gleam'
-    vim.lsp.enable 'nixd'
-    vim.lsp.config('clangd', {
-      cmd = {
-        'clangd',
-        '--compile-commands-dir=.',
-        '--background-index',
-        '--query-driver=/nix/store/*/bin/gcc,/nix/store/*/bin/clang', -- Essential for Nix
-      },
-      root_dir = vim.fs.root(0, { 'compile_commands.json', '.git' }),
     })
-    vim.lsp.enable 'clangd'
-
-    vim.api.nvim_create_autocmd('LspAttach', {
-      callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client then
-          client.server_capabilities.semanticTokensProvider = nil
-        end
-      end,
-    })
-
-    require('conform').setup {
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        nix = { 'nixfmt' },
-        rust = { 'rustfmt' },
-        markdown = { 'mdformat' },
-      },
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_md = 500,
-      },
-    }
-
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      pattern = '*',
-      callback = function(args)
-        require('conform').format { bufnr = args.buf }
-      end,
-    })
-
-    -- lint
-    require('lint').linters_by_ft = {
-      nix = { 'statix' },
-    }
-    vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-      callback = function()
-        require('lint').try_lint()
-      end,
-    })
-
-    require('lsp_signature').setup()
-
-    require('mini.comment').setup()
-
-    require('timber').setup()
-
-    require('neogen').setup { snippet_engine = 'luasnip' }
-    vim.keymap.set('n', '<leader>cg', '<cmd>Neogen<cr>', opts)
-
-    require('just').setup {
-      fidget_message_limit = 32, -- limit for length of fidget progress message
-      play_sound = false, -- plays sound when task is finished or failed
-      open_qf_on_error = true, -- opens quickfix when task fails
-      open_qf_on_run = true, -- opens quickfix when running `run` task (`:JustRun`)
-      open_qf_on_any = false, -- opens quickfix when running any task (overrides other open_qf options)
-      telescope_borders = { -- borders for telescope window
-        prompt = { '─', '│', ' ', '│', '┌', '┐', '│', '│' },
-        results = { '─', '│', '─', '│', '├', '┤', '┘', '└' },
-        preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
-      },
-    }
-
-    vim.keymap.set('n', '<F12>', '<cmd>Just<cr>', opts)
-
-    require('lsp-auto-setup').setup {}
-  end,
+  end
 }

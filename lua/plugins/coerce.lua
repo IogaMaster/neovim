@@ -1,8 +1,9 @@
 return {
   'coerce.nvim',
-  before = function()
-    deps.add { source = 'gregorias/coerce.nvim', depends = { 'gregorias/coop.nvim' } }
-  end,
+  pkgstest = {
+    'gregorias/coerce.nvim',
+    'gregorias/coop.nvim', -- dep
+  },
   keys = {
     { 'cr', '<Plug>(coerce-normal)', desc = 'Coerce word' },
     { 'gcr', '<Plug>(coerce-motion)', desc = 'Coerce motion' },

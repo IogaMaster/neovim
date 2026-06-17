@@ -1,9 +1,11 @@
 return {
   'staline.nvim',
-
-  before = function()
-    deps.add { source = 'tamton-aquib/staline.nvim', depends = { 'nvim-tree/nvim-web-devicons' } }
-  end,
+  lazy = false, -- on startup
+  pkgs = {
+    'tamton-aquib/staline.nvim',
+    -- deps
+    'nvim-tree/nvim-web-devicons',
+  },
   after = function()
     require('staline').setup {
       defaults = {

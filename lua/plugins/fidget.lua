@@ -1,8 +1,7 @@
 return {
   'fidget.nvim',
-  before = function()
-    deps.add { source = 'folke/which-key.nvim' }
-  end,
+  pkgs = { 'j-hui/fidget.nvim' },
+  lazy = false,
   after = function()
     require('fidget').setup {
       notification = {

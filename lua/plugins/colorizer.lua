@@ -1,10 +1,9 @@
 return {
   'nvim-colorizer.lua',
-  before = function()
-    deps.add {
-      source = 'norcalli/nvim-colorizer.lua',
-    }
-  end,
+  pkgs = {
+    'norcalli/nvim-colorizer.lua',
+  },
+  event = 'BufReadPost',
   after = function()
     require('colorizer').setup()
   end,

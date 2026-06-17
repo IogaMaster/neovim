@@ -1,12 +1,9 @@
 return {
   'lazygit',
-  before = function()
-    deps.add {
-      source = 'kdheepak/lazygit.nvim',
-    }
-  end,
+  pkgs = {
+    'kdheepak/lazygit.nvim',
+  },
   keys = {
     { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'Git' },
   },
-  after = nil,
 }

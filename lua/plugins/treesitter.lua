@@ -1,21 +1,14 @@
 return {
   'nvim-treesitter',
-  add = function()
-    require('mini.deps').add {
-      source = 'nvim-treesitter/nvim-treesitter',
-      checkout = 'main',
-      hooks = {
-        post_checkout = function()
-          vim.cmd 'TSUpdate'
-        end,
-      },
-    }
-    deps.add {
-      source = 'nvim-treesitter/nvim-treesitter-textobjects',
-    }
+  lazy =false, -- nice to have this early
+  pkgs = {
+    'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  before = function()
+    vim.cmd 'TSUpdate'
   end,
-  -- Use the new module name here
-  config = function()
+  after = function()
     require('nvim-treesitter').setup {
       auto_install = true,
       highlight = { enable = true },

@@ -35,7 +35,7 @@
 
 </details>
 
-Using [mini.deps](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-deps.md) and [lz.n](https://github.com/nvim-neorocks/lz.n) (for lazy loading)
+Using `vim.pack` and [lz.n](https://github.com/nvim-neorocks/lz.n) (for lazy loading)
 
 - 📦 Neovim packaged with fhs
 

@@ -1,8 +1,8 @@
 return {
   'toggleterm.nvim',
-  before = function()
-    deps.add { source = 'akinsho/toggleterm.nvim' }
-  end,
+  pkgs = {
+    'akinsho/toggleterm.nvim',
+  },
   keys = {
     { '<leader>ot', '<cmd>ToggleTerm<cr>', desc = 'Toggle Terminal' },
   },

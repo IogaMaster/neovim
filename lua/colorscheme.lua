@@ -1,4 +1,4 @@
-deps.add { source = 'RRethy/base16-nvim' }
+vim.pack.add { { src = 'https://github.com/RRethy/base16-nvim' } }
 
 local colorscheme_path = vim.fn.expand '~/.config/base16.lua'
 local colors

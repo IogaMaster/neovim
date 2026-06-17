@@ -1,11 +1,18 @@
 return {
   'telescope.nvim',
-  before = function()
-    deps.add { source = 'nvim-telescope/telescope.nvim', depends = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' } }
-    deps.add { source = 'nvim-telescope/telescope-file-browser.nvim', depends = { 'stevearc/oil.nvim' } }
-    deps.add { source = 'mrcjkb/telescope-manix' }
-    deps.add { source = 'IogaMaster/telescope-vim-pack.nvim' }
-  end,
+  pkgs = {
+    -- Telescope and deps
+    'nvim-telescope/telescope.nvim',
+    'nvim-lua/plenary.nvim',
+    'nvim-tree/nvim-web-devicons',
+
+    -- Extensions
+    'nvim-telescope/telescope-file-browser.nvim',
+    'stevearc/oil.nvim', -- dep of file_browser
+    'mrcjkb/telescope-manix',
+    'IogaMaster/telescope-vim-pack.nvim',
+  },
+  cmd = 'Telescope',
   keys = {
     { '<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', desc = 'Find Files' },
     { '<leader>fd', '<cmd>Telescope file_browser hidden=true<cr>', desc = 'Find Files' },
