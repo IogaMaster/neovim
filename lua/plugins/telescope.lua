@@ -4,6 +4,7 @@ return {
     deps.add { source = 'nvim-telescope/telescope.nvim', depends = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' } }
     deps.add { source = 'nvim-telescope/telescope-file-browser.nvim', depends = { 'stevearc/oil.nvim' } }
     deps.add { source = 'mrcjkb/telescope-manix' }
+    deps.add { source = 'IogaMaster/telescope-vim-pack.nvim' }
   end,
   keys = {
     { '<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', desc = 'Find Files' },
@@ -12,6 +13,7 @@ return {
     { '<leader>ft', '<cmd>Telescope live_grep hidden=true<cr>', desc = 'Search Text in Files' },
     { '<leader>fg', '<cmd>Telescope git_status hidden=true<cr>', desc = 'Search List of changed files' },
     { '<leader>bi', '<cmd>Telescope buffers<cr>', desc = 'List Buffers' },
+    { '<leader>pp', '<cmd>Telescope vimpack<cr>', desc = 'Manage Plugins' },
     { '<M-x>', '<cmd>Telescope commands<cr>', desc = 'Run Command' },
     { '<leader>fm', '<cmd>Telescope manix<cr>', desc = 'Search Nix Options and Utils' },
   },
