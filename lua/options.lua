@@ -38,6 +38,8 @@ vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 vim.o.winborder = 'rounded'
 
+require('vim._core.ui2').enable({ enable = true })
+
 -- Neovide
 if vim.g.neovide then
   vim.o.guifont = 'JetBrains Mono Nerd Font:h14'
