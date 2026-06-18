@@ -16,6 +16,6 @@ return {
     }
   end,
   keys = {
-    { '<leader>op', '<cmd>Oil<cr>', desc = 'oil' },
+    { '<leader>fd', '<cmd>Oil<cr>', desc = 'oil' },
   },
 }

@@ -15,7 +15,6 @@ return {
   cmd = 'Telescope',
   keys = {
     { '<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', desc = 'Find Files' },
-    { '<leader>fd', '<cmd>Telescope file_browser hidden=true<cr>', desc = 'Find Files' },
     { '<leader>fr', '<cmd>Telescope oldfiles hidden=true<cr>', desc = 'Recent Files' },
     { '<leader>ft', '<cmd>Telescope live_grep hidden=true<cr>', desc = 'Search Text in Files' },
     { '<leader>fg', '<cmd>Telescope git_status hidden=true<cr>', desc = 'Search List of changed files' },
