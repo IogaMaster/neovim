@@ -4,6 +4,10 @@ return {
     'neovim/nvim-lspconfig',
     'Massolari/lsp-auto-setup.nvim',
 
+    -- Snippets
+    'L3MON4D3/LuaSnip',
+    'rafamadriz/friendly-snippets',
+
     -- Juice
     'onsails/lspkind-nvim',
     'Bekaboo/dropbar.nvim',
@@ -57,19 +61,28 @@ return {
 
     require('lsp-auto-setup').setup()
 
+    -- ========= SNIPPETS =========
+    require('luasnip.loaders.from_vscode').lazy_load()
+
     -- ========= COMPLETION =========
     vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'popup', 'fuzzy' }
     vim.opt.completeitemalign = 'kind,abbr,menu'
-    vim.opt.complete = '.,f'
+    vim.opt.complete = '.,f,snp'
     vim.opt.pumheight = 20
     vim.opt.pumblend = 0
 
     -- ========= KEYS =========
-    vim.keymap.set('i', '<Tab>', function() -- Cycle forward
+    -- Tab forward and back, or jump through snippets
+    vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+      if require('luasnip').jumpable(1) then
+        return '<Plug>luasnip-jump-next'
+      end
       return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
     end, { expr = true })
-
-    vim.keymap.set('i', '<S-Tab>', function() -- Cycle backward
+    vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
+      if require('luasnip').jumpable(-1) then
+        return '<Plug>luasnip-jump-prev'
+      end
       return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
     end, { expr = true })
 
@@ -104,6 +117,17 @@ return {
         end,
       })
     end
+
+    -- Auto-trigger completion after 3+ chars
+    vim.api.nvim_create_autocmd('TextChangedI', {
+      callback = function()
+        local col = vim.api.nvim_win_get_cursor(0)[2]
+        local before = vim.api.nvim_get_current_line():sub(1, col)
+        if before:match '%w%w%w+$' then
+          vim.lsp.completion.get()
+        end
+      end,
+    })
 
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
