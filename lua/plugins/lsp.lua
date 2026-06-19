@@ -25,8 +25,8 @@ return {
   },
   after = function()
     -- ========= LSP CONFIG =========
-    -- Sign icons
     vim.diagnostic.config {
+      -- Sign icons
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = '✘',
@@ -35,7 +35,24 @@ return {
           [vim.diagnostic.severity.INFO] = '',
         },
       },
+      virtual_text = false,
     }
+
+    -- Virtual lines, this makes it simpler to understand the lsp errors
+    -- They will only show on the current line, after not moving for 3/4 of a second
+    local timer = vim.uv.new_timer()
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      callback = function()
+        timer:stop()
+        vim.diagnostic.config { virtual_lines = false }
+        timer:start(750, 0, function()
+          timer:stop()
+          vim.schedule(function()
+            vim.diagnostic.config { virtual_lines = { current_line = true } }
+          end)
+        end)
+      end,
+    })
 
     -- Format on save
     vim.api.nvim_create_autocmd('BufWritePre', {
