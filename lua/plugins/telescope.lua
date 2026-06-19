@@ -18,6 +18,7 @@ return {
     { '<leader>fr', '<cmd>Telescope oldfiles hidden=true<cr>', desc = 'Recent Files' },
     { '<leader>ft', '<cmd>Telescope live_grep hidden=true<cr>', desc = 'Search Text in Files' },
     { '<leader>fg', '<cmd>Telescope git_status hidden=true<cr>', desc = 'Search List of changed files' },
+    { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Search List of helptags' },
     { '<leader>bi', '<cmd>Telescope buffers<cr>', desc = 'List Buffers' },
     { '<leader>pp', '<cmd>Telescope vimpack<cr>', desc = 'Manage Plugins' },
     { '<M-x>', '<cmd>Telescope commands<cr>', desc = 'Run Command' },
