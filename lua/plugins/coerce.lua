@@ -1,6 +1,6 @@
 return {
   'coerce.nvim',
-  pkgstest = {
+  pkgs = {
     'gregorias/coerce.nvim',
     'gregorias/coop.nvim', -- dep
   },
